@@ -101,9 +101,14 @@ Docker
 If you have [Docker](https://www.docker.com/), you can build a 
 Debian-compatible binary using:
 
-    docker build -t madler/sunzip .
+    docker build -t stain/sunzip .
 
-The docker image has the `/data` volume as default working 
+The above Docker image is also available at 
+[Docker Hub](https://hub.docker.com/r/stain/sunzip):
+
+    docker pull stain/sunzip
+
+The Docker image has the `/data` volume as default working 
 directory where files will be extracted. 
 
 The below example extract from a ZIP URL and extracts it into
@@ -111,7 +116,7 @@ the host `/tmp/1` exposed as `/data`.
 
 
     URL=https://github.com/madler/sunzip/archive/master.zip
-    curl --fail -L $URL | docker run -i -v /tmp/1:/data madler/sunzip
+    curl --fail -L $URL | docker run -i -v /tmp/1:/data stain/sunzip
 
 **Tip**: To avoid extracted files owned by `root` make sure the mapped 
 directory exists and specify the Docker option `--user` with your UID:
@@ -119,7 +124,7 @@ directory exists and specify the Docker option `--user` with your UID:
 ```bash
     mkdir /tmp/5
     URL=https://github.com/madler/sunzip/archive/master.zip
-    curl --fail -L $URL | docker run --user `id -u` -i -v /tmp/5:/data madler/sunzip
+    curl --fail -L $URL | docker run --user `id -u` -i -v /tmp/5:/data stain/sunzip
     ls -al /tmp/5
 ```
 
